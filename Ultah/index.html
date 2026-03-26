@@ -4,17 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Oyy Ultah!</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
     <style>
       body {
         background-color: #ffc0cb; /* Tema warna Pink! */
-        /* Ganti font ke Fredoka */
-        font-family: "Fredoka", sans-serif;
+        /* Font baru: Fredoka */
+        font-family: 'Fredoka', sans-serif;
         text-align: center;
         display: flex;
         flex-direction: column;
@@ -32,6 +29,8 @@
         animation: fadeIn 0.8s ease-in-out;
         width: 90%;
         max-width: 500px;
+        position: relative;
+        z-index: 10; /* Pastikan teks di depan partikel */
       }
 
       /* Slide 1 Aktif Duluan */
@@ -42,13 +41,11 @@
       h1 {
         text-shadow: 2px 2px #fff;
         margin-bottom: 20px;
-        /* Sedikit besarkan ukuran font */
         font-size: 3rem;
       }
 
       p {
         color: #ad1457;
-        /* Sedikit besarkan ukuran font */
         font-size: 1.4rem;
         line-height: 1.6;
         margin-bottom: 20px;
@@ -66,8 +63,7 @@
         box-shadow: 0 5px 15px rgba(216, 27, 96, 0.4);
         transition: all 0.2s;
         margin-top: 10px;
-        /* Font bold pada tombol */
-        font-family: "Fredoka", sans-serif;
+        font-family: 'Fredoka', sans-serif;
         font-weight: 600;
       }
 
@@ -97,60 +93,46 @@
         transition: opacity 0.5s;
       }
 
+      /* Gaya untuk Partikel Foto Kustom */
+      .foto-partikel {
+        position: absolute;
+        width: 100px; /* Ukuran partikel kustom */
+        height: 100px;
+        background-image: url('kucing.png'); /* Menggunakan foto kucing melempar meja */
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: -1; /* Jatuh di belakang teks */
+        animation: jatuh-foto 2s linear infinite;
+        opacity: 0.7; /* Sedikit transparan */
+      }
+
+      /* Animasi Jatuh untuk Foto */
+      @keyframes jatuh-foto {
+        0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      }
+
       /* Animasi */
       @keyframes goyangApi {
-        0% {
-          transform: rotate(-5deg) scale(1);
-        }
-        100% {
-          transform: rotate(5deg) scale(1.1);
-        }
+        0% { transform: rotate(-5deg) scale(1); }
+        100% { transform: rotate(5deg) scale(1.1); }
       }
 
       @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
       }
 
       @keyframes kueGoyang {
-        0% {
-          transform: rotate(-5deg);
-        }
-        100% {
-          transform: rotate(5deg);
-        }
+        0% { transform: rotate(-5deg); }
+        100% { transform: rotate(5deg); }
       }
 
       .kue-slide3 {
         font-size: 5rem;
         animation: kueGoyang 0.8s infinite alternate;
         margin: 10px 0;
-      }
-
-      /* Gaya untuk Confetti */
-      .confetti {
-        position: absolute;
-        width: 12px;
-        height: 12px;
-        animation: jatuh 3s linear infinite;
-        border-radius: 2px;
-        z-index: -1;
-      }
-      @keyframes jatuh {
-        0% {
-          transform: translateY(-100vh) rotate(0deg);
-          opacity: 1;
-        }
-        100% {
-          transform: translateY(100vh) rotate(720deg);
-          opacity: 0;
-        }
       }
     </style>
   </head>
@@ -183,6 +165,7 @@
       <p>
         Semoga sehat sehat, panjang panjang, dan makin asoy<br />(sungkem sek
         sama motor new🫣🫣)
+        <p>Mangat UTBKnya!,<br> Warung bu darmi🍛 sama Geprek Bu Lis🍗 nungguin</p>
       </p>
       <footer style="margin-top: 30px; font-size: 0.9rem; color: #ad1457">
         <em>Borax Leonardo Saepuloh</em>
@@ -220,29 +203,28 @@
         setTimeout(() => {
           document.getElementById("slide-2").style.display = "none";
           document.getElementById("slide-3").style.display = "block";
-          buatConfetti();
+          // Nonaktifkan confetti warna-warni, panggil foto partikel kustom
+          // buatConfetti(); // Dinonaktifkan
+          buatFotoPartikel();
         }, 1200);
       }
 
-      // Fungsi Confetti
-      function buatConfetti() {
-        const warna = [
-          "#ffeb3b",
-          "#00bcd4",
-          "#ff9800",
-          "#e91e63",
-          "#4caf50",
-          "#9c27b0",
-        ];
-        for (let i = 0; i < 80; i++) {
-          let confetti = document.createElement("div");
-          confetti.classList.add("confetti");
-          confetti.style.left = Math.random() * 100 + "vw";
-          confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
-          confetti.style.animationDelay = Math.random() * 2 + "s";
-          confetti.style.backgroundColor =
-            warna[Math.floor(Math.random() * warna.length)];
-          document.body.appendChild(confetti);
+      // Fungsi Foto Partikel
+      function buatFotoPartikel() {
+        // Loop untuk membuat 50 partikel foto (jumlah yang pas)
+        for (let i = 0; i < 30; i++) {
+          let partikel = document.createElement("div");
+          partikel.classList.add("foto-partikel");
+          partikel.style.left = Math.random() * 100 + "vw";
+          partikel.style.animationDuration = Math.random() * 5 + 10 + "s"; // Durasi jatuh acak
+          partikel.style.animationDelay = Math.random() * 2 + "s"; // Jeda acak
+          
+          // Opsional: Sedikit variasi ukuran
+          let ukuran = Math.random() * 70 + 70; // 70px to 130px
+          partikel.style.width = ukuran + "px";
+          partikel.style.height = ukuran + "px";
+          
+          document.body.appendChild(partikel);
         }
       }
     </script>
