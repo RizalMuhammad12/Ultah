@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oyy Ultah!</title>
+    <style>
+      body {
+        background-color: #ffc0cb; /* Tema warna Pink! */
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
+        color: #d81b60;
+      }
+
+      /* Wadah tiap Slide */
+      .slide {
+        display: none;
+        animation: fadeIn 0.8s ease-in-out;
+        width: 90%;
+        max-width: 500px;
+      }
+
+      /* Slide 1 Aktif Duluan */
+      #slide-1 {
+        display: block;
+      }
+
+      h1 {
+        text-shadow: 2px 2px #fff;
+        margin-bottom: 20px;
+        font-size: 2.5rem;
+      }
+
+      p {
+        color: #ad1457;
+        font-size: 1.2rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .tombol {
+        background-color: #d81b60;
+        color: white;
+        border: 3px solid #fff;
+        padding: 12px 35px;
+        font-size: 1.3rem;
+        font-weight: bold;
+        border-radius: 30px;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(216, 27, 96, 0.4);
+        transition: all 0.2s;
+        margin-top: 10px;
+      }
+
+      .tombol:hover {
+        transform: scale(1.1) translateY(-3px);
+        background-color: #c2185b;
+        box-shadow: 0 8px 20px rgba(216, 27, 96, 0.6);
+      }
+
+      /* Area Kue dan Lilin di Slide 2 */
+      .area-kue {
+        position: relative;
+        font-size: 6rem;
+        margin: 30px 0;
+        height: 150px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      .api {
+        position: absolute;
+        font-size: 3rem;
+        top: -20px;
+        animation: goyangApi 0.3s infinite alternate;
+        transition: opacity 0.5s;
+      }
+
+      /* Animasi */
+      @keyframes goyangApi {
+        0% {
+          transform: rotate(-5deg) scale(1);
+        }
+        100% {
+          transform: rotate(5deg) scale(1.1);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes kueGoyang {
+        0% {
+          transform: rotate(-5deg);
+        }
+        100% {
+          transform: rotate(5deg);
+        }
+      }
+
+      .kue-slide3 {
+        font-size: 5rem;
+        animation: kueGoyang 0.8s infinite alternate;
+        margin: 10px 0;
+      }
+
+      /* Gaya untuk Confetti */
+      .confetti {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        animation: jatuh 3s linear infinite;
+        border-radius: 2px;
+        z-index: -1;
+      }
+      @keyframes jatuh {
+        0% {
+          transform: translateY(-100vh) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(720deg);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="slide-1" class="slide">
+      <h1>Oyy ultah kan? 🤨</h1>
+      <button class="tombol" onclick="keSlide2()">Heem</button>
+    </div>
+
+    <div id="slide-2" class="slide">
+      <h1>Sek sek...</h1>
+      <p>
+        Tutup mata bentar, make a wish dalam hati<br />(pura pura doa aj) 🙏
+      </p>
+
+      <div class="area-kue">
+        <div id="api-lilin" class="api">🔥</div>
+        <div class="kue">🎂</div>
+      </div>
+
+      <p>Udah doanya? Coba tiup lilinnya dari jauh!</p>
+      <button class="tombol" onclick="tiupLilin()">Tiup 🌬️</button>
+    </div>
+
+    <div id="slide-3" class="slide">
+      <h1>Duarrr kepala dua euyy🎉</h1>
+      <div class="kue-slide3">🥳</div>
+      <p>Ngetes tok jir, sekalian pamer skill .</p>
+      <p>Tapi apik gk sih ngeneki?</p>
+    </div>
+
+    <audio id="laguHBD" loop>
+      <source src="hbd-8bit.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script>
+      // Fungsi pindah ke Slide 2
+      function keSlide2() {
+        document.getElementById("slide-1").style.display = "none";
+        document.getElementById("slide-2").style.display = "block";
+
+        // Putar lagu pas tombol "Heem" dipencet
+        let lagu = document.getElementById("laguHBD");
+        lagu.volume = 0.5;
+        lagu
+          .play()
+          .catch((error) =>
+            console.log("Lagu diblokir browser, interaksi user kurang."),
+          );
+      }
+
+      // Fungsi Tiup Lilin
+      function tiupLilin() {
+        // Matikan api
+        let api = document.getElementById("api-lilin");
+        api.style.opacity = "0"; // Apinya memudar perlahan
+        api.style.animation = "none"; // Animasi goyang berhenti
+
+        // Kasih jeda 1.2 detik biar kerasa apinya mati dulu sebelum ganti slide
+        setTimeout(() => {
+          document.getElementById("slide-2").style.display = "none";
+          document.getElementById("slide-3").style.display = "block";
+          buatConfetti();
+        }, 1200);
+      }
+
+      // Fungsi Confetti
+      function buatConfetti() {
+        const warna = [
+          "#ffeb3b",
+          "#00bcd4",
+          "#ff9800",
+          "#e91e63",
+          "#4caf50",
+          "#9c27b0",
+        ];
+        for (let i = 0; i < 80; i++) {
+          let confetti = document.createElement("div");
+          confetti.classList.add("confetti");
+          confetti.style.left = Math.random() * 100 + "vw";
+          confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
+          confetti.style.animationDelay = Math.random() * 2 + "s";
+          confetti.style.backgroundColor =
+            warna[Math.floor(Math.random() * warna.length)];
+          document.body.appendChild(confetti);
+        }
+      }
+    </script>
+  </body>
+</html>
