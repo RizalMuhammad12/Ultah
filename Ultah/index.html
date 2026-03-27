@@ -2,11 +2,14 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Oyy Ultah!</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
       body {
         background-color: #ffc0cb; /* Tema warna Pink! */
@@ -108,23 +111,43 @@
       }
 
       @keyframes jatuh-foto {
-        0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
-        100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+        0% {
+          transform: translateY(-100vh) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
       }
 
       @keyframes goyangApi {
-        0% { transform: rotate(-5deg) scale(1); }
-        100% { transform: rotate(5deg) scale(1.1); }
+        0% {
+          transform: rotate(-5deg) scale(1);
+        }
+        100% {
+          transform: rotate(5deg) scale(1.1);
+        }
       }
 
       @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       @keyframes kueGoyang {
-        0% { transform: rotate(-5deg); }
-        100% { transform: rotate(5deg); }
+        0% {
+          transform: rotate(-5deg);
+        }
+        100% {
+          transform: rotate(5deg);
+        }
       }
 
       /* GAYA BARU SLIDE 3 (Ala Sticky Note) */
@@ -154,28 +177,13 @@
         margin-top: 40px;
       }
 
-      /* Wadah Wadah Otomatis Mobile & Layar Gede */
       .catatan-wraper {
-        position: relative; 
+        position: relative; /* Diubah jadi relative buat wadah */
         width: 100%;
+        height: 70vh; /* Area luas buat nempel kertas */
         max-width: 1000px;
         z-index: 5;
         margin: 0 auto;
-        /* default: FLEX PARALEL UNTUK HP */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        padding-bottom: 40px;
-      }
-
-      /* MEDIA QUERY: UNTUK LAYAR GEDE (PC/TAB) */
-      @media (min-width: 600px) {
-        .catatan-wraper {
-          /* Ubah ke posisi manual absolute lu di PC */
-          display: block;
-          height: 70vh; 
-        }
       }
 
       .catatan {
@@ -185,13 +193,17 @@
         border-radius: 5px;
         box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
         width: 250px;
-        /* Absolute dimatikan untuk Flex (HP), dinyalakan di inline style (PC) */
-        position: relative; 
+        position: absolute; /* Diubah jadi absolute biar bisa digeser manual */
+        /* Hapus transform rotasi acak dari sini, kita pindah manual ke HTML */
       }
 
       /* Variasi warna */
-      .catatan-pink { background-color: #fff1f2; }
-      .catatan-biru { background-color: #e3f2fd; }
+      .catatan-pink {
+        background-color: #fff1f2;
+      }
+      .catatan-biru {
+        background-color: #e3f2fd;
+      }
 
       /* Pin/Paku */
       .pin {
@@ -205,9 +217,15 @@
         border: 2px solid #fff;
         box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
       }
-      .catatan-biru .pin { background-color: #2196f3; }
-      .catatan-pink .pin { background-color: #e91e63; }
-      .catatan-kuning .pin { background-color: #ffeb3b; }
+      .catatan-biru .pin {
+        background-color: #2196f3;
+      }
+      .catatan-pink .pin {
+        background-color: #e91e63;
+      }
+      .catatan-kuning .pin {
+        background-color: #ffeb3b;
+      }
 
       .catatan p {
         font-size: 1.1rem;
@@ -257,7 +275,9 @@
         background-repeat: no-repeat;
         background-position: center;
         opacity: 0;
-        transition: opacity 0.2s, transform 0.2s;
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
         z-index: 101;
         /* Berikan warna cap merah/pink yang jelas */
         filter: drop-shadow(2px 2px 2px rgba(233, 30, 99, 0.7));
@@ -287,9 +307,18 @@
       }
 
       @keyframes stempelCap {
-        0% { transform: translateY(-100px) scale(1.5) rotate(0deg); opacity: 0; }
-        50% { transform: translateY(0) scale(1.1) rotate(-20deg); opacity: 1; }
-        100% { transform: translateY(0) scale(1.2) rotate(-15deg); opacity: 1; }
+        0% {
+          transform: translateY(-100px) scale(1.5) rotate(0deg);
+          opacity: 0;
+        }
+        50% {
+          transform: translateY(0) scale(1.1) rotate(-20deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(0) scale(1.2) rotate(-15deg);
+          opacity: 1;
+        }
       }
 
       /* Elemen Stempel (Alat) */
@@ -360,7 +389,7 @@
           style="top: 10%; left: 60%; transform: rotate(4deg)"
         >
           <div class="pin"></div>
-          <p>Sama yiran yiran prettt🥴🥴🥴🥴</p>
+          <p>Sama yiran yiran prettt🥴🥴🥴</p>
         </div>
 
         <div
@@ -393,12 +422,11 @@
             top: 65%;
             left: 55%;
             transform: rotate(-4deg);
-            text-align: right; /* Kertasnya rata kanan */
+            text-align: right;
           "
         >
           <div class="pin" style="background-color: #4caf50"></div>
-          <p>Siapa lagi yng bikin kalo bukan<br /></p>
-          <span id="nama-ttd" style="display: block; text-align: right; font-weight: bold; font-style: italic; font-size: 0.9em; z-index: 6;">Borax Leonardo Saepuloh</span>
+          <p>Siapa lagi yng bikin kalo bukan<br><em><span id="nama-ttd">Borax Leonardo Saepuloh</span></em></p>
         </div>
       </div>
 
@@ -467,14 +495,14 @@
         }
       }
 
-      // FUNGSI INTERAKTIF STEMPEL (DINAMIS UNTUK MOBILE)
+     // FUNGSI INTERAKTIF STEMPEL
       function pencetMakasih() {
         let alatStempel = document.getElementById("alat-stempel");
         let capStempel = document.getElementById("cap-stempel");
-        // Target langsung teks nama yang mentok kanan
+        // Target diubah langsung ke teks nama lu
         let targetNama = document.getElementById("nama-ttd");
 
-        // Atur posisi awal alat stempel tepat di atas tulisan nama (Dinamis untuk HP/PC)
+        // Atur posisi awal alat stempel tepat di atas teks nama
         if (targetNama) {
           let rect = targetNama.getBoundingClientRect();
           
@@ -491,7 +519,7 @@
         
         // Sedikit *delay* biar display block kerender dulu
         setTimeout(() => {
-          // Atur kedalaman alat stempel jatuh (Dinamis nyesuain letak nama)
+          // Atur kedalaman alat stempel jatuh (sesuaikan ini jika alat stempel kurang mentok ke nama)
           if (targetNama) {
              let rect = targetNama.getBoundingClientRect();
              alatStempel.style.top = (rect.top - 80) + "px"; 
@@ -503,7 +531,7 @@
         // Cap stempel muncul
         setTimeout(() => {
           capStempel.classList.add("stempel-turun");
-        }, 300); // Disarankan untuk nambahin delay biar pas alat turun
+        }, 300); // Sedikit disesuaikan biar pas dengan alat yg turun
 
         // Alat stempel naik lagi dan hilang
         setTimeout(() => {
